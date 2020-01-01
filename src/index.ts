@@ -1,2 +1,2 @@
-import Qweb from './core/Qweb';
+import Qweb from './core/DJReport';
 export default Qweb;

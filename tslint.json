@@ -62,6 +62,7 @@
         "allow-pascal-case"
       ]
     },
+    "indent": [true, "spaces", 4],
     "object-literal-sort-keys": false
   }
 }
