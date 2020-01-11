@@ -10,12 +10,15 @@ test('init DJReport', async t => {
 
     t.log(djReport);
 
-    djReport.report({
-        msg:123,
-        extra: {
-            a: '123523523'
-        }
-    }, msgType.info)
+    djReport.report(
+        {
+            msg: 123,
+            extra: {
+                a: '123523523'
+            }
+        },
+        msgType.info
+    );
 
     t.pass();
 });

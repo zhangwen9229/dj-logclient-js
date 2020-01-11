@@ -2,4 +2,4 @@
 
 // export default DJReport;
 
-export * from './core/DJReport'
+export * from './core/DJReport';

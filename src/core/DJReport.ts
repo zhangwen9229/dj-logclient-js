@@ -2,7 +2,6 @@ import { msgType } from './common/enums';
 // import { ajax } from './utils/ajax';
 import { getDevices } from './utils/index';
 
-
 class DJReport {
     public readonly config: {
         readonly baseUrl: string;

@@ -5,7 +5,7 @@ export function getDevices() {
     if ((global as any).navigator) {
         return null;
     }
-    const u =(global as any).navigator.userAgent;
+    const u = (global as any).navigator.userAgent;
     if (/(iPhone|iPad|iPod|iOS)/i.test(u)) {
         return 'IOS';
     } else if (/(Android)/i.test(u)) {
