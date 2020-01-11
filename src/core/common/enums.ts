@@ -1,4 +1,4 @@
 export enum msgType {
-    error='error',
-    info='info'
+    error = 'error',
+    info = 'info'
 }

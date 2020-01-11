@@ -7,7 +7,7 @@ test('init DJReport', async t => {
         baseUrl: 'ws://47.103.78.91:26657'
     });
 
-    t.log(djReport)
+    t.log(djReport);
 
     t.pass();
 });
