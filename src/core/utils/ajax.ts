@@ -24,16 +24,23 @@ export function ajax(options: IOptions = { type: 'GET', url: '' }) {
     } else {
         xhr = new (global as any).ActiveXObject('Microsoft.XMLHTTP');
     }
-
+    // tslint:disable-next-line: one-variable-per-declaration
+    let _resolve, _reject;
+    const promise = new Promise((resolve, reject) => {
+        _resolve = resolve;
+        _reject = reject
+    })
     // tslint:disable-next-line: only-arrow-functions
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             const status = xhr.status;
             if (status >= 200 && status < 300) {
                 options.success &&
                     options.success(xhr.responseText, xhr.responseXML);
+                _resolve(xhr.responseText, xhr.responseXML)
             } else {
                 options.fail && options.fail(status);
+                _reject(status)
             }
         }
     };
@@ -50,6 +57,7 @@ export function ajax(options: IOptions = { type: 'GET', url: '' }) {
         );
         xhr.send(params);
     }
+    return promise
 }
 
 /*

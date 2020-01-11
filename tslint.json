@@ -63,6 +63,7 @@
       ]
     },
     "indent": [true, "spaces", 4],
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-shadowed-variable": false
   }
 }

@@ -1,5 +1,4 @@
 // tslint:disable
-
 const path = require('path');
 
 function resolve(filepath) {
@@ -11,15 +10,18 @@ module.exports = {
 		extensions: ['.js', '.ts', '.json'],
 	},
 	devtool: 'source-map',// 打包出的js文件是否生成map文件（方便浏览器调试）
-	mode: 'production',
+	mode: 'development',
 	entry: {
-		"index": './src/index.ts',
+		"djreport": './src/core/DJReport',
 	},
 	output: {
-		filename: 'qweb.js',// 生成的fiename需要与package.json中的main一致
+		filename: '[name].js',// 生成的fiename需要与package.json中的main一致
 		path: path.resolve(__dirname, 'build/umd'),
 		libraryTarget: 'umd',
-		umdNamedDefine: true
+		globalObject: 'this',
+		umdNamedDefine: true,
+		library: 'DJReport',
+		libraryExport: "default"
 	},
 	performance: {
 		hints: false
@@ -54,7 +56,8 @@ module.exports = {
 			/[\\\/]tweetnacl-auth[\\\/]/
 		]
 	},
-	plugins: [],
+	plugins: [
+	],
 	node: {
 		fs: 'empty'
 	}
