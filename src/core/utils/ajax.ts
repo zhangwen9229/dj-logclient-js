@@ -1,4 +1,4 @@
-import qs from 'qs'
+import qs from 'qs';
 
 type success = (responseText: any, responseXML: any) => void;
 type fail = (status: any) => void;

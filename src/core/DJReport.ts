@@ -21,7 +21,9 @@ class DJReport {
         msgType: msgType
     ) {
         try {
-            const ua = !!(global as any).navigator ? (global as any).navigator.userAgent : '';
+            const ua = !!(global as any).navigator
+                ? (global as any).navigator.userAgent
+                : '';
             const data: any = {
                 msgType,
                 msg,
