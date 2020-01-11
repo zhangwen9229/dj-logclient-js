@@ -1,6 +1,7 @@
 import { msgType } from './common/enums';
-import { getDevices } from './utils';
-import { ajax } from './utils/ajax';
+// import { ajax } from './utils/ajax';
+import { getDevices } from './utils/index';
+
 
 class DJReport {
     public readonly config: {
@@ -17,13 +18,9 @@ class DJReport {
             extra,
             url,
             device
-        }: { msg: any; extra: any; url: string; device: string },
+        }: { msg: any; extra?: any; url?: string; device?: string },
         msgType: msgType
     ) {
-        // tslint:disable-next-line: no-console
-        console.log(msgType + '  -----');
-        // tslint:disable-next-line: no-console
-        console.log({ msg, extra });
         try {
             const data: any = {
                 msgType,
@@ -33,13 +30,15 @@ class DJReport {
                 url: !!window ? window.location.href : url,
                 ua: !navigator ? navigator.userAgent : ''
             };
-            const res = await ajax({
-                url: this.config.baseUrl,
-                data,
-                type: 'POST'
-            });
             // tslint:disable-next-line: no-console
-            console.log(res);
+            console.log('djreport.report data: ', data);
+            // const res = await ajax({
+            //     url: this.config.baseUrl,
+            //     data,
+            //     type: 'POST'
+            // });
+            // // tslint:disable-next-line: no-console
+            // console.log(res);
         } catch (error) {
             // tslint:disable-next-line: no-console
             console.log('DJReport.report Error:', error);

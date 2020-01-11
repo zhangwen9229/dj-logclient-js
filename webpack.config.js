@@ -12,22 +12,23 @@ module.exports = {
 	devtool: 'source-map',// 打包出的js文件是否生成map文件（方便浏览器调试）
 	mode: 'development',
 	entry: {
-		"djreport": './src/core/DJReport',
+		"djreport": resolve('src/index'),
 	},
 	output: {
 		filename: '[name].js',// 生成的fiename需要与package.json中的main一致
 		path: path.resolve(__dirname, 'build/umd'),
 		libraryTarget: 'umd',
 		globalObject: 'this',
-		umdNamedDefine: true,
+		// umdNamedDefine: true,
 		library: 'DJReport',
 		libraryExport: "default"
 	},
 	performance: {
 		hints: false
 	},
+	// optimization: { concatenateModules: false, providedExports: false, usedExports: false },
 	module: {
-		unknownContextCritical: false,
+		// unknownContextCritical: false,
 		rules: [
 			{
 				test: /\.tsx?$/,
@@ -35,25 +36,14 @@ module.exports = {
 					{
 						loader: 'ts-loader',
 						options: {
+							// 必须注释下面的配置
 							// 指定特定的ts编译配置，为了区分脚本的ts配置
-							configFile: path.resolve(__dirname, './tsconfig.module.umd.json'),
+							// configFile: path.resolve(__dirname, './tsconfig.module.umd.json'),
 						},
 					}
 				],
 				exclude: /node_modules/,
-			},
-			{
-				test: /[\\\/]tweetnacl[\\\/]/,
-				use: ['exports-loader', 'imports-loader']
-			},
-			{
-				test: /[\\\/]tweetnacl-auth[\\\/]/,
-				use: ['exports-loader', 'imports-loader']
 			}
-		],
-		noParse: [
-			/[\\\/]tweetnacl[\\\/]/,
-			/[\\\/]tweetnacl-auth[\\\/]/
 		]
 	},
 	plugins: [
