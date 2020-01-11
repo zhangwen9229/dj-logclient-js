@@ -1,3 +1,5 @@
+import qs from 'qs'
+
 type success = (responseText: any, responseXML: any) => void;
 type fail = (status: any) => void;
 
@@ -16,7 +18,6 @@ export interface IOptions {
 export function ajax(options: IOptions = { type: 'GET', url: '' }) {
     options.type = (options.type || 'GET').toUpperCase();
     options.dataType = options.dataType || 'json';
-    const params = formatParams(options.data);
     let xhr;
     // tslint:disable-next-line: prefer-conditional-expression
     if ((global as any).XMLHttpRequest) {
@@ -45,6 +46,7 @@ export function ajax(options: IOptions = { type: 'GET', url: '' }) {
         }
     };
 
+    const params = qs.stringify(options.data);
     if (options.type === 'GET') {
         xhr.open('GET', options.url + '?' + params, true);
         xhr.send(null);
@@ -63,14 +65,14 @@ export function ajax(options: IOptions = { type: 'GET', url: '' }) {
 /*
  *格式化参数
  */
-function formatParams(data) {
-    const arr = [];
-    // tslint:disable-next-line: forin
-    for (const name in data) {
-        arr.push(
-            encodeURIComponent(name) + '=' + encodeURIComponent(data[name])
-        );
-    }
-    arr.push(('v=' + Math.random()).replace('.', ''));
-    return arr.join('&');
-}
+// function formatParams(data) {
+//     const arr = [];
+//     // tslint:disable-next-line: forin
+//     for (const name in data) {
+//         arr.push(
+//             encodeURIComponent(name) + '=' + encodeURIComponent(data[name])
+//         );
+//     }
+//     arr.push(('v=' + Math.random()).replace('.', ''));
+//     return arr.join('&');
+// }

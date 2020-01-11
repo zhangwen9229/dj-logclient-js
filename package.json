@@ -69,6 +69,7 @@
     "js-amino": "https://github.com/zhangwen9229/Js-Amino.git",
     "js-sha256": "^0.9.0",
     "lodash": "^4.17.15",
+    "qs": "^6.9.1",
     "sha.js": "^2.4.11",
     "tendermint": "^4.0.8",
     "tweetnacl": "^1.0.1",

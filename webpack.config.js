@@ -10,7 +10,7 @@ module.exports = {
 		extensions: ['.js', '.ts', '.json'],
 	},
 	devtool: 'source-map',// 打包出的js文件是否生成map文件（方便浏览器调试）
-	mode: 'development',
+	mode: 'production',
 	entry: {
 		"djreport": resolve('src/index'),
 	},

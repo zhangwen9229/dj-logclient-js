@@ -2,7 +2,7 @@
  * 获取设备是安卓、IOS  还是PC端
  */
 export function getDevices() {
-    if ((global as any).navigator) {
+    if (!(global as any).navigator) {
         return null;
     }
     const u = (global as any).navigator.userAgent;

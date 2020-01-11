@@ -1,5 +1,5 @@
 import { msgType } from './common/enums';
-// import { ajax } from './utils/ajax';
+import { ajax } from './utils/ajax';
 import { getDevices } from './utils/index';
 
 class DJReport {
@@ -21,23 +21,24 @@ class DJReport {
         msgType: msgType
     ) {
         try {
+            const ua = !!(global as any).navigator ? (global as any).navigator.userAgent : '';
             const data: any = {
                 msgType,
                 msg,
                 extra,
                 os: getDevices() || device,
                 url: !!window ? window.location.href : url,
-                ua: !navigator ? navigator.userAgent : ''
+                ua
             };
             // tslint:disable-next-line: no-console
             console.log('djreport.report data: ', data);
-            // const res = await ajax({
-            //     url: this.config.baseUrl,
-            //     data,
-            //     type: 'POST'
-            // });
-            // // tslint:disable-next-line: no-console
-            // console.log(res);
+            const res = await ajax({
+                url: this.config.baseUrl,
+                data,
+                type: 'POST'
+            });
+            // tslint:disable-next-line: no-console
+            console.log(res);
         } catch (error) {
             // tslint:disable-next-line: no-console
             console.log('DJReport.report Error:', error);
