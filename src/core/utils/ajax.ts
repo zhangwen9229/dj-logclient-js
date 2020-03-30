@@ -6,6 +6,7 @@ type fail = (status: any) => void;
 export interface IOptions {
     type: string;
     url: string;
+    timeout?: number;
     dataType?: string;
     data?: object | string;
     success?: success;
@@ -15,7 +16,7 @@ export interface IOptions {
 /*
  *ajax封装
  */
-export function ajax(options: IOptions = { type: 'GET', url: '' }) {
+export function ajax(options: IOptions = { type: 'GET', url: '', timeout: 3000 }) {
     options.type = (options.type || 'GET').toUpperCase();
     options.dataType = options.dataType || 'json';
     let xhr;
@@ -30,6 +31,9 @@ export function ajax(options: IOptions = { type: 'GET', url: '' }) {
     const promise = new Promise((resolve, reject) => {
         _resolve = resolve;
         _reject = reject;
+        setTimeout(() => {
+            reject({msg:`网络超时${options.timeout}`})
+        }, options.timeout);
     });
     // tslint:disable-next-line: only-arrow-functions
     xhr.onreadystatechange = function() {

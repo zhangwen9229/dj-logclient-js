@@ -29,21 +29,22 @@ class DJReport {
                 msg,
                 extra,
                 os: getDevices() || device,
-                url: !!window ? window.location.href : url,
+                url: !!window && !!window.location ? window.location.href : url,
                 ua
             };
             // tslint:disable-next-line: no-console
-            console.log('djreport.report data: ', data);
-            const res = await ajax({
+            // console.log('djreport.report data: ', data);
+            // const res = 
+            await ajax({
                 url: this.config.baseUrl,
                 data,
                 type: 'POST'
             });
             // tslint:disable-next-line: no-console
-            console.log(res);
+            // console.log(res);
         } catch (error) {
             // tslint:disable-next-line: no-console
-            console.log('DJReport.report Error:', error);
+            // console.log('DJReport.report Error:', error);
         }
     }
 }

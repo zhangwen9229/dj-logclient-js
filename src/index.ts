@@ -1,5 +1,5 @@
-// import DJReport from './core/DJReport';
+import DJReport from './core/DJReport';
 
-// export default DJReport;
+export default DJReport;
 
-export * from './core/DJReport';
+// export * from './core/DJReport';
