@@ -16,7 +16,9 @@ export interface IOptions {
 /*
  *ajax封装
  */
-export function ajax(options: IOptions = { type: 'GET', url: '', timeout: 3000 }) {
+export function ajax(
+    options: IOptions = { type: 'GET', url: '', timeout: 3000 }
+) {
     options.type = (options.type || 'GET').toUpperCase();
     options.dataType = options.dataType || 'json';
     let xhr;
@@ -32,7 +34,7 @@ export function ajax(options: IOptions = { type: 'GET', url: '', timeout: 3000 }
         _resolve = resolve;
         _reject = reject;
         setTimeout(() => {
-            reject({msg:`网络超时${options.timeout}`})
+            reject({ msg: `网络超时${options.timeout}` });
         }, options.timeout);
     });
     // tslint:disable-next-line: only-arrow-functions
