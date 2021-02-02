@@ -2,24 +2,30 @@ import { msgType } from './common/enums';
 import { ajax } from './utils/ajax';
 import { getDevices } from './utils/index';
 
-class DJReport {
-    public readonly config: {
-        readonly baseUrl: string;
-    };
+interface IConfig {
+    os?: string;
+    readonly baseUrl?: string;
+    readonly isReport?: boolean;
+}
 
-    public constructor(config: { readonly baseUrl: string }) {
+interface IInfo {
+    os?: string;
+    msg: any;
+    extra?: any;
+    url?: string;
+}
+
+class DJReport {
+    public readonly config: IConfig;
+
+    public constructor(config: IConfig = { isReport: false }) {
         this.config = config;
     }
 
-    public async report(
-        {
-            msg,
-            extra,
-            url,
-            device
-        }: { msg: any; extra?: any; url?: string; device?: string },
-        msgType: msgType
-    ) {
+    public async report({ msg, extra, url, os }: IInfo, msgType: msgType) {
+        if (!this.config.isReport) {
+            return;
+        }
         try {
             const ua = !!(global as any).navigator
                 ? (global as any).navigator.userAgent
@@ -28,10 +34,14 @@ class DJReport {
                 msgType,
                 msg,
                 extra,
-                os: getDevices() || device,
-                url: !!window && !!window.location ? window.location.href : url,
+                os: os || this.config.os || getDevices(),
+                url:
+                    url ||
+                    (!!window && !!window.location ? window.location.href : ''),
                 ua
             };
+
+            
             // tslint:disable-next-line: no-console
             // console.log('djreport.report data: ', data);
             // const res =
