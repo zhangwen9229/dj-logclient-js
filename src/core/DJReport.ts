@@ -41,7 +41,6 @@ class DJReport {
                 ua
             };
 
-            
             // tslint:disable-next-line: no-console
             // console.log('djreport.report data: ', data);
             // const res =
